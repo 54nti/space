@@ -19,8 +19,8 @@ void Nave::draw() {
 
 void Nave::setX(int x) { m_x = x; }
 
-void Nave::setX(int y) { m_y = y; }
+void Nave::setY(int y) { m_y = y; }
 
 int Nave::getX() { return m_x; }
 
-int Nave::getX() { return m_x; }
+int Nave::getY() { return m_y; }
