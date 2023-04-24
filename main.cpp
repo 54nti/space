@@ -2,14 +2,13 @@
 #include <ncurses.h>
 #include "nave.h"
 
-const int ANCHO = 120;
-const int ALTO = 40;
+//const int ANCHO = 10;
+//const int ALTO = 10;
 const int DELAY = 20;
 
 bool game_over;
 int puntaje;
 bool salir;
-
 Nave miNave;
 
 void setup();
@@ -31,11 +30,10 @@ int main() {
         printf("la terminal debe tener como minimo %dx%d\n\n", ANCHO, ALTO);
         exit(1);
     }
-     */
+    */
 
     setup();
     salir = false;
-
     while (!salir) {
         while (!game_over) {
             input();
@@ -59,16 +57,24 @@ void input() {
     int tecla = getch();
     switch (tecla) {
         case KEY_UP:
-            miNave.setY(miNave.getY() - 1);
+            if (miNave.getY() > 1) {
+                miNave.setY(miNave.getY() - 1);
+            }
             break;
         case KEY_DOWN:
-            miNave.setY(miNave.getY() + 1);
+            if (miNave.getY() < LINES - 4) {
+                miNave.setY(miNave.getY() + 1);
+            }
             break;
         case KEY_LEFT:
-            miNave.setX(miNave.getX() - 1);
+            if (miNave.getX() > 1) {
+                miNave.setX(miNave.getX() - 1);
+            }
             break;
         case KEY_RIGHT:
-            miNave.setX(miNave.getX() + 1);
+            if (miNave.getX() < COLS - 6) {
+                miNave.setX(miNave.getX() + 1);
+            }
             break;
         case 27:
             game_over = TRUE;
