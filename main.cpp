@@ -12,6 +12,8 @@ int puntaje;
 bool salir;
 Nave miNave;
 Asteroide astUno(10, 2);
+Asteroide astDos(4, 8);
+Asteroide astTres(15, 10);
 
 void setup();
 void input();
@@ -94,6 +96,11 @@ void update() {
         game_over = true;
     }
     astUno.update();
+    astDos.update();
+    astTres.update();
+    astUno.colision(miNave);
+    astDos.colision(miNave);
+    astTres.colision(miNave);
 }
 
 void draw() {
@@ -109,6 +116,8 @@ void draw() {
     }
     miNave.draw();
     astUno.draw();
+    astDos.draw();
+    astTres.draw();
     refresh();
     delay_output(DELAY);
 }

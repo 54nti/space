@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <ncurses.h>
+#include "Nave.h"
 
 class Asteroide {
     private:
@@ -11,4 +12,5 @@ class Asteroide {
         Asteroide(int, int);
         void update();
         void draw();
+        void colision(Nave& nave);
 };
