@@ -79,16 +79,31 @@ void input() {
         case 27:
             game_over = TRUE;
             break;
+        case 'e':
+            miNave.setEnergia(miNave.getEnergia() - 1);
         default:
             break;
     }
 }
 
-void update() {}
+void update() {
+    miNave.update();
+    if (miNave.getVidas() <= 0) {
+        game_over = true;
+    }
+}
 
 void draw() {
     erase();
     box(stdscr, 0, 0);
+    mvprintw(0, 80, "[ENERGIA:      ]");
+    for(int i = 0; i < miNave.getEnergia(); i++) {
+        mvaddch(0, 91 + i, ACS_CKBOARD);
+    }
+    mvprintw(0, 100, "[VIDAS:      ]");
+    for(int i = 0; i < miNave.getVidas(); i++) {
+        mvaddch(0, 109 + i, A_ALTCHARSET | 96);
+    }
     miNave.draw();
     refresh();
     delay_output(DELAY);
