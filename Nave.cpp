@@ -1,4 +1,4 @@
-#include "nave.h"
+#include "Nave.h"
 
 void Nave::setup() {
     this->x = 60;
