@@ -12,6 +12,6 @@ class Nave {
         void draw();
         void setX(int);
         void setY(int);
-        void getX();
-        void getY();
+        int getX();
+        int getY();
 };
