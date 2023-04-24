@@ -1,13 +1,16 @@
 #include <iostream>
-#include "ncurses.h"
+#include <ncurses.h>
+#include "nave.h"
 
 const int ANCHO = 120;
 const int ALTO = 40;
-const int DELAY = 30;
+const int DELAY = 20;
 
 bool game_over;
 int puntaje;
 bool salir;
+
+Nave miNave;
 
 void setup();
 void input();
@@ -22,11 +25,13 @@ int main() {
     keypad(stdscr, TRUE);
     nodelay(stdscr, TRUE);
 
+    /*
     if (LINES < ALTO || COLS < ANCHO) {
         endwin();
         printf("la terminal debe tener como minimo %dx%d\n\n", ANCHO, ALTO);
         exit(1);
     }
+     */
 
     setup();
     salir = false;
@@ -47,26 +52,38 @@ int main() {
 void setup() {
     game_over = false;
     puntaje = 0;
+    miNave.setup();
 }
 
 void input() {
     int tecla = getch();
     switch (tecla) {
+        case KEY_UP:
+            miNave.setY(miNave.getY() - 1);
+            break;
+        case KEY_DOWN:
+            miNave.setY(miNave.getY() + 1);
+            break;
+        case KEY_LEFT:
+            miNave.setX(miNave.getX() - 1);
+            break;
+        case KEY_RIGHT:
+            miNave.setX(miNave.getX() + 1);
+            break;
         case 27:
-            game_over = true;
+            game_over = TRUE;
             break;
         default:
             break;
     }
 }
 
-void update() {
-
-}
+void update() {}
 
 void draw() {
     erase();
     box(stdscr, 0, 0);
+    miNave.draw();
     refresh();
     delay_output(DELAY);
 }
