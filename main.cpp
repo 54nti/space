@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ncurses.h>
-#include "nave.h"
+#include "Nave.h"
+#include "Asteroide.h"
 
 //const int ANCHO = 10;
 //const int ALTO = 10;
@@ -10,6 +11,7 @@ bool game_over;
 int puntaje;
 bool salir;
 Nave miNave;
+Asteroide astUno(10, 2);
 
 void setup();
 void input();
@@ -91,6 +93,7 @@ void update() {
     if (miNave.getVidas() <= 0) {
         game_over = true;
     }
+    astUno.update();
 }
 
 void draw() {
@@ -105,6 +108,7 @@ void draw() {
         mvaddch(0, 109 + i, A_ALTCHARSET | 96);
     }
     miNave.draw();
+    astUno.draw();
     refresh();
     delay_output(DELAY);
 }

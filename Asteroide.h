@@ -1,14 +1,14 @@
-//
-// Created by usuario on 24/04/23.
-//
+#pragma once
 
-#ifndef SPACE_ASTEROIDE_H
-#define SPACE_ASTEROIDE_H
-
+#include <iostream>
+#include <ncurses.h>
 
 class Asteroide {
-
+    private:
+        float x;
+        float y;
+    public:
+        Asteroide(int, int);
+        void update();
+        void draw();
 };
-
-
-#endif //SPACE_ASTEROIDE_H
