@@ -3,6 +3,7 @@ project(space)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(CMAKE_CXX_FLAGS "-lncurses")
-
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
 add_executable(space main.cpp nave.cpp nave.h)
+target_link_libraries(space ${CURSES_LIBRARIES})
