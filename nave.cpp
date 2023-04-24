@@ -1,26 +1,26 @@
 #include "nave.h"
 
 void Nave::setup() {
-    m_x = 60;
-    m_y = 20;
+    this->x = 60;
+    this->y = 20;
 }
 
 void Nave::draw() {
-    mvaddch(m_y, m_x + 2, '^');
-    mvaddch(m_y + 1, m_x + 1, '(');
-    mvaddch(m_y + 1, m_x + 2, ACS_PLMINUS);
-    mvaddch(m_y + 1, m_x + 3, ')');
-    mvaddch(m_y + 2, m_x, ACS_ULCORNER);
-    mvaddch(m_y + 2, m_x + 1, '#');
-    mvaddch(m_y + 2, m_x + 2, ' ');
-    mvaddch(m_y + 2, m_x + 3, '#');
-    mvaddch(m_y + 2, m_x + 4, ACS_URCORNER);
+    mvaddch(this->y, this->x + 2, '^');
+    mvaddch(this->y + 1, this->x + 1, '(');
+    mvaddch(this->y + 1, this->x + 2, ACS_PLMINUS);
+    mvaddch(this->y + 1, this->x + 3, ')');
+    mvaddch(this->y + 2, this->x, ACS_ULCORNER);
+    mvaddch(this->y + 2, this->x + 1, '#');
+    mvaddch(this->y + 2, this->x + 2, ' ');
+    mvaddch(this->y + 2, this->x + 3, '#');
+    mvaddch(this->y + 2, this->x + 4, ACS_URCORNER);
 }
 
-void Nave::setX(int x) { m_x = x; }
+void Nave::setX(int x) { this->x = x; }
 
-void Nave::setY(int y) { m_y = y; }
+void Nave::setY(int y) { this->y = y; }
 
-int Nave::getX() { return m_x; }
+int Nave::getX() { return this->x; }
 
-int Nave::getY() { return m_y; }
+int Nave::getY() { return this->y; }

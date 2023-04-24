@@ -5,8 +5,8 @@
 
 class Nave {
     private:
-        int m_x;
-        int m_y;
+        int x;
+        int y;
     public:
         void setup();
         void draw();
