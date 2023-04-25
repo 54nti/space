@@ -1,7 +1,9 @@
 #include <iostream>
+#include <vector>
 #include <ncurses.h>
 #include "Nave.h"
 #include "Asteroide.h"
+#include "Proyectil.h"
 
 //const int ANCHO = 10;
 //const int ALTO = 10;
@@ -11,9 +13,8 @@ bool game_over;
 int puntaje;
 bool salir;
 Nave miNave;
-Asteroide astUno(10, 2);
-Asteroide astDos(4, 8);
-Asteroide astTres(15, 10);
+std::vector<Asteroide> asteroides;
+std::vector<Proyectil> proyectiles;
 
 void setup();
 void input();
@@ -55,6 +56,9 @@ void setup() {
     game_over = false;
     puntaje = 0;
     miNave.setup();
+    for(int i = 0; i < 5; i++) {
+        asteroides.push_back(Asteroide(rand() % (COLS + 1), 1));
+    }
 }
 
 void input() {
@@ -85,6 +89,10 @@ void input() {
             break;
         case 'e':
             miNave.setEnergia(miNave.getEnergia() - 1);
+            break;
+        case 'v':
+            //proyectiles.push_back(Proyectil(miNave.getX() + 2, miNave.getY()));
+            proyectiles.emplace_back(miNave.getX() + 2, miNave.getY());
         default:
             break;
     }
@@ -95,12 +103,16 @@ void update() {
     if (miNave.getVidas() <= 0) {
         game_over = true;
     }
-    astUno.update();
-    astDos.update();
-    astTres.update();
-    astUno.colision(miNave);
-    astDos.colision(miNave);
-    astTres.colision(miNave);
+    for(int i = 0; i < 5; i++) {
+        asteroides[i].update();
+        asteroides[i].colision(miNave);
+    }
+    for(int i = 0; i < proyectiles.size(); i++) {
+        proyectiles[i].update();
+        if (proyectiles[i].limite()) {
+            proyectiles.erase(proyectiles.begin() + i);
+        }
+    }
 }
 
 void draw() {
@@ -115,9 +127,12 @@ void draw() {
         mvaddch(0, 109 + i, A_ALTCHARSET | 96);
     }
     miNave.draw();
-    astUno.draw();
-    astDos.draw();
-    astTres.draw();
+    for(int i = 0; i < 5; i++) {
+        asteroides[i].draw();
+    }
+    for(int i = 0; i < proyectiles.size(); i++) {
+        proyectiles[i].draw();
+    }
     refresh();
     delay_output(DELAY);
 }
