@@ -1,14 +1,17 @@
-//
-// Created by usuario on 25/04/23.
-//
+#pragma once
 
-#ifndef SPACE_PROYECTIL_H
-#define SPACE_PROYECTIL_H
-
+#include <iostream>
+#include <ncurses.h>
 
 class Proyectil {
-
+private:
+    int x;
+    int y;
+public:
+    Proyectil(int, int);
+    void update();
+    void draw();
+    bool limite();
+    int getX();
+    int getY();
 };
-
-
-#endif //SPACE_PROYECTIL_H
