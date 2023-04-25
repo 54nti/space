@@ -6,7 +6,7 @@ Asteroide::Asteroide(int x, int y) {
 }
 
 void Asteroide::update() {
-    this->y = this->y + 0.4f;
+    this->y = this->y + 0.2f;
     if (this->y >= LINES - 1) {
         this->x = rand() % (COLS - 1) + 1;
         this->y = 1;
@@ -26,3 +26,7 @@ void Asteroide::colision(Nave& nave) {
         this->y = 1;
     }
 }
+
+int Asteroide::getX() { return this->x; }
+
+int Asteroide::getY() { return this->y; }

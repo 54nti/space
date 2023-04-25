@@ -113,6 +113,17 @@ void update() {
             proyectiles.erase(proyectiles.begin() + i);
         }
     }
+    for (int i = 0; i < asteroides.size(); ++i) {
+        for (int j = 0; j < proyectiles.size(); ++j) {
+            if (asteroides[i].getX() == proyectiles[j].getX() and
+                (asteroides[i].getY() == proyectiles[j].getY() or asteroides[i].getY() + 1 == proyectiles[j].getY()))
+            {
+                asteroides.erase(asteroides.begin() + i);
+                asteroides.push_back(Asteroide(rand() % (COLS + 1), 1));
+                puntaje++;
+            }
+        }
+    }
 }
 
 void draw() {
@@ -126,6 +137,8 @@ void draw() {
     for(int i = 0; i < miNave.getVidas(); i++) {
         mvaddch(0, 109 + i, A_ALTCHARSET | 96);
     }
+    mvprintw(0, 5, "[ PUNTOS:      ]");
+    mvprintw(0, 15, "%d", puntaje);
     miNave.draw();
     for(int i = 0; i < 5; i++) {
         asteroides[i].draw();

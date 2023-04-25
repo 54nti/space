@@ -13,4 +13,6 @@ class Asteroide {
         void update();
         void draw();
         void colision(Nave& nave);
+        int getX();
+        int getY();
 };
