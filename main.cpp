@@ -56,6 +56,8 @@ void setup() {
     game_over = false;
     puntaje = 0;
     miNave.setup();
+    asteroides.clear();
+    proyectiles.clear();
     for(int i = 0; i < 5; i++) {
         asteroides.push_back(Asteroide(rand() % (COLS + 1), 1));
     }
